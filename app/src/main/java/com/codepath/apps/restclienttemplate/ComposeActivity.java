@@ -1,8 +1,10 @@
 package com.codepath.apps.restclienttemplate;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,11 +28,15 @@ public class ComposeActivity extends AppCompatActivity {
     EditText etCompose;
     Button btnTweet;
     TwitterClient client;
+    ActionBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
+
+        bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.twitter_blue)));
 
         client = TwitterApp.getRestClient(this);
         etCompose = findViewById(R.id.etCompose);

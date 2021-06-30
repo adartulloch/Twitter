@@ -21,10 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="uh_darr" />
+        android:layout_toEndOf="@+id/tvName"
+        tools:text="@uh_darr" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -34,6 +34,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
         tools:text="This is my tweet!" />
 
     <TextView
@@ -49,13 +51,26 @@
 
     <ImageView
         android:id="@+id/ivMedia"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvBody"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:visibility="gone"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:text="tvName"
+        android:textStyle="bold"
+        tools:text="Adar" />
+
 
 </RelativeLayout>

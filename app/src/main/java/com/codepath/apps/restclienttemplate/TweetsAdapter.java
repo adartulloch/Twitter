@@ -70,6 +70,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvName;
         TextView tvCreatedAt;
         ImageView ivMedia;
 
@@ -78,6 +79,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
+            tvName = itemView.findViewById(R.id.tvName);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             ivMedia = itemView.findViewById(R.id.ivMedia);
@@ -85,8 +87,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
+            tvScreenName.setText("@" + tweet.user.screenName);
             Glide.with(context).load(tweet.user.publicImageUrl).into(ivProfileImage);
+            tvName.setText(tweet.user.name);
 
 
             //Check if media exists on the URL
@@ -94,6 +97,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 Glide.with(context).load(tweet.photoURL).into(ivMedia);
                 ivMedia.setVisibility(View.VISIBLE);
             } else {
+                //Otherwise, we still need to always set the ImageView to View.GONE since we're within a RecyclerView.
                 ivMedia.setVisibility(View.GONE);
             }
 
