@@ -24,12 +24,19 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public String photoURL;
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = getDate(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.photoURL = "";
+
+        JSONObject entity = jsonObject.getJSONObject("entities");
+        if (entity.has("media")) {
+            tweet.photoURL = entity.getJSONArray("media").getJSONObject(0).getString("media_url_https");
+        }
         return tweet;
     }
 

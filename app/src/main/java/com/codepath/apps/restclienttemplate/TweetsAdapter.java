@@ -37,6 +37,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(List<Tweet> list) {
+        tweets.addAll(list);
+        notifyDataSetChanged();
+    }
 
     //Bind values based on the position of the element
     @Override
@@ -60,6 +71,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         TextView tvCreatedAt;
+        ImageView ivMedia;
 
         //itemView is representation of one row in the RecyclerView (aka a Tweet)
         public ViewHolder(@NonNull @NotNull View itemView) {
@@ -68,12 +80,23 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
+            ivMedia = itemView.findViewById(R.id.ivMedia);
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             Glide.with(context).load(tweet.user.publicImageUrl).into(ivProfileImage);
+
+
+            //Check if media exists on the URL
+            if (!tweet.photoURL.isEmpty()) {
+                Glide.with(context).load(tweet.photoURL).into(ivMedia);
+                ivMedia.setVisibility(View.VISIBLE);
+            } else {
+                ivMedia.setVisibility(View.GONE);
+            }
+
             tvCreatedAt.setText(tweet.createdAt);
         }
     }
