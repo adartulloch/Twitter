@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate.activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -14,6 +15,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.adapters.TweetsAdapter;
@@ -44,6 +47,8 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     ActionBar bar;
     TweetDao tweetDao;
+    ProgressBar pb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,9 @@ public class TimelineActivity extends AppCompatActivity {
 
         bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.twitter_blue)));
+
+        pb = findViewById(R.id.pbLoading);
+        pb.setVisibility(ProgressBar.VISIBLE);
 
         client = com.codepath.apps.restclienttemplate.TwitterApp.getRestClient(this);
         tweetDao = ((com.codepath.apps.restclienttemplate.TwitterApp) getApplicationContext()).getMyDatabase().tweetDao();
@@ -65,7 +73,7 @@ public class TimelineActivity extends AppCompatActivity {
         adapter = new TweetsAdapter(this, tweets);
 
         //Find the swipeView
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer = findViewById(R.id.swipeContainer);
 
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -101,7 +109,12 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
 
+         //Set a divider on the RecyclerView elements
+        rvTweets.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
+
         populateHomeTimeline();
+        pb.setVisibility(View.INVISIBLE);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

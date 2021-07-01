@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/compose"
         android:icon="@drawable/ic_vector_compose"
         android:title="Compose"
         app:showAsAction="always"
         android:tint="@android:color/white"
-    />
+        />
+
     <item
         android:id="@+id/logout"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logout_button"
         android:title="Logout"
-        app:showAsAction="collapseActionView" />
+        app:showAsAction="always" />
 </menu>

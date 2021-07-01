@@ -18,6 +18,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
     Context context;
@@ -89,13 +91,26 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText("@" + tweet.user.screenName);
-            Glide.with(context).load(tweet.user.publicImageUrl).into(ivProfileImage);
+
+            int radiusProfile = 30; // corner radius, higher value = more rounded
+            int marginProfile = 15; // crop margin, set to 0 for corners with no crop
+
+            Glide.with(context)
+                    .load(tweet.user.publicImageUrl)
+                    .centerCrop() // scale image to fill the entire ImageView
+                    .transform(new RoundedCornersTransformation(radiusProfile, marginProfile)).
+                    into(ivProfileImage);
+
             tvName.setText(tweet.user.name);
 
 
             //Check if media exists on the URL
             if (!tweet.photoURL.isEmpty()) {
-                Glide.with(context).load(tweet.photoURL).into(ivMedia);
+                int radiusMedia = 30;
+                int marginMedia = 30;
+                Glide.with(context)
+                        .load(tweet.photoURL)
+                        .into(ivMedia);
                 ivMedia.setVisibility(View.VISIBLE);
             } else {
                 //Otherwise, we still need to always set the ImageView to View.GONE since we're within a RecyclerView.

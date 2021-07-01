@@ -5,12 +5,12 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.codepath.apps.restclienttemplate"
         minSdkVersion 28
-        targetSdkVersion 28
+        targetSdkVersion 29
 
         // Room schemas
         javaCompileOptions {
@@ -54,4 +54,9 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation 'com.facebook.stetho:stetho:1.5.1'
+
+    //Glide transformations
+    implementation 'jp.wasabeef:glide-transformations:4.1.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
 }
