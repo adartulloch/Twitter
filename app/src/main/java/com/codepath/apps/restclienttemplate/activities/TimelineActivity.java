@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.restclienttemplate.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -8,17 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
+import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.adapters.TweetsAdapter;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.models.TweetDao;
 import com.codepath.apps.restclienttemplate.models.TweetWithUser;
@@ -55,8 +53,8 @@ public class TimelineActivity extends AppCompatActivity {
         bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.twitter_blue)));
 
-        client = TwitterApp.getRestClient(this);
-        tweetDao = ((TwitterApp) getApplicationContext()).getMyDatabase().tweetDao();
+        client = com.codepath.apps.restclienttemplate.TwitterApp.getRestClient(this);
+        tweetDao = ((com.codepath.apps.restclienttemplate.TwitterApp) getApplicationContext()).getMyDatabase().tweetDao();
 
 
         //Find the RecyclerView
@@ -92,7 +90,7 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setAdapter(adapter);
 
         //Query for existing Tweets in the DB
-        AsyncTask.execute(new Runnable() {
+         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 Log.i(TAG, "SHOWING DATA FROM DATABASE");
@@ -102,6 +100,7 @@ public class TimelineActivity extends AppCompatActivity {
                 adapter.addAll(tweetsFromDB);
             }
         });
+
         populateHomeTimeline();
     }
     @Override

@@ -10,13 +10,16 @@ import java.util.List;
 @Dao
 public interface TweetDao {
 
+    //Load 20 tweets from the Database
     @Query("SELECT Tweet.body AS tweet_body, Tweet.createdAt AS tweet_createdAt, Tweet.id AS tweet_id, Tweet.photoURL AS tweet_photoURL, User.*" +
-            "FROM Tweet INNER JOIN User ON Tweet.userId = User.id ORDER BY Tweet.createdAt DESC LIMIT 5")
+            "FROM Tweet INNER JOIN User ON Tweet.userId = User.id ORDER BY Tweet.createdAt DESC LIMIT 20")
     List<TweetWithUser> recentItems();
 
+    //Variable number of Tweet objects
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertModel(Tweet... tweets);
 
+    //Variable number of User objects
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertModel(User... users);
 }

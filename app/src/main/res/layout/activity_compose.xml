@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ComposeActivity">
+    tools:context=".activities.ComposeActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiCompose"
@@ -36,5 +36,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
+        android:background="@color/twitter_blue"
         android:text="@string/tweet" />
 </RelativeLayout>
