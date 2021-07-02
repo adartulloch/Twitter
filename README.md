@@ -46,11 +46,11 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='walkthough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 Here's a demonsration of the offline persistence:
 
-<img src='walkthough_offline.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='walkthrough_offline.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 GIF created with [Kap](https://getkap.co/).
