@@ -36,6 +36,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:autoLink="all"
+        android:linksClickable="true"
         tools:text="This is my tweet!" />
 
     <TextView
